@@ -52,4 +52,4 @@ The extension downloads [IMDb's non-commercial datasets](https://developer.imdb.
 
 ## License
 
-The code is available under the [MIT License](LICENSE). See the section above for what it does not cover.
+The code is available under the [MIT License](LICENSE). It does not cover the logos, as explained in [NOTICE](NOTICE).
