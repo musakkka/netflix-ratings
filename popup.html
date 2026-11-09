@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Netflix Ratings</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header>
+      <h1><img src="icons/icon32.png" alt="" width="20" height="20" />Netflix Ratings</h1>
+      <label class="switch" title="Show scores and filter titles">
+        <input id="enabled" type="checkbox" aria-label="Show scores and filter titles" />
+        <span></span>
+      </label>
+    </header>
+
+    <main id="controls">
+      <section class="group">
+        <label class="field">
+          <span class="field-head">
+            <span class="source"><img src="logos/imdb.svg" alt="IMDb" width="30" height="15" />Minimum score</span>
+            <output id="minImdbValue"></output>
+          </span>
+          <input id="minImdb" type="range" min="0" max="10" step="0.1" />
+        </label>
+        <label class="field">
+          <span class="field-head">
+            <span class="source"><img src="logos/rtFresh.svg" alt="Rotten Tomatoes" width="15" height="15" />Minimum Tomatometer</span>
+            <output id="minRtValue"></output>
+          </span>
+          <input id="minRt" type="range" min="0" max="100" step="1" />
+        </label>
+      </section>
+
+      <section class="group">
+        <div class="row">
+          <span id="modeLabel">Below the cutoff</span>
+          <div class="segmented" role="radiogroup" aria-labelledby="modeLabel">
+            <label><input type="radio" name="mode" value="hide" /><span>Hide</span></label>
+            <label><input type="radio" name="mode" value="dim" /><span>Dim</span></label>
+          </div>
+        </div>
+        <div class="row">
+          <span id="unratedLabel">Hide titles with no IMDb score</span>
+          <label class="switch">
+            <input id="hideUnrated" type="checkbox" aria-labelledby="unratedLabel" />
+            <span></span>
+          </label>
+        </div>
+      </section>
+    </main>
+
+    <footer id="status"></footer>
+    <script src="popup.js"></script>
+  </body>
+</html>

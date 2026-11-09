@@ -1,0 +1,211 @@
+/* Score chip on every card */
+.nfr-anchor {
+  position: relative;
+}
+
+.nfr-badges {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 7px;
+  border-radius: 4px;
+  background: rgba(8, 9, 10, 0.78);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.09);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  color: #f7f8f8;
+  font: 500 12px/1 "Netflix Sans", Inter, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.nfr-score {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nfr-score svg {
+  display: block;
+  flex: none;
+  height: 15px;
+}
+
+.nfr-logo-imdb {
+  width: 30px;
+  margin-right: 2px;
+}
+
+.nfr-logo-rt {
+  width: 15px;
+}
+
+.nfr-approx,
+.nfr-none {
+  color: #8a8f98;
+}
+
+/* Filter states */
+.nfr-hidden {
+  display: none !important;
+}
+
+.nfr-dim {
+  opacity: 0.2;
+  filter: grayscale(1);
+  transition: opacity 0.15s;
+}
+
+.nfr-dim:hover {
+  opacity: 1;
+  filter: none;
+}
+
+.nfr-empty {
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Filtered carousels: Netflix's row stays laid out offscreen so it can keep paging. */
+.nfr-shelved {
+  position: relative;
+}
+
+.nfr-shelved [data-uia="carousel-scroller"] {
+  position: absolute !important;
+  left: -300vw !important;
+  top: 0;
+  width: 100vw;
+  visibility: hidden;
+}
+
+.nfr-shelved button[data-uia^="carousel-hawkins"] {
+  visibility: hidden;
+}
+
+.nfr-shelf {
+  --nfr-gutter: 4%;
+  position: relative;
+}
+
+.nfr-track {
+  display: flex;
+  gap: 8px;
+  padding: 0 var(--nfr-gutter);
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-padding: 0 var(--nfr-gutter);
+  scrollbar-width: none;
+}
+
+.nfr-track::-webkit-scrollbar {
+  display: none;
+}
+
+.nfr-card {
+  position: relative;
+  display: block;
+  flex: 0 0 calc((100% - 40px) / 6);
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #141516;
+  outline: none;
+}
+
+.nfr-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0);
+  pointer-events: none;
+  transition: box-shadow 0.15s;
+}
+
+.nfr-card:hover::after {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+}
+
+.nfr-card:focus-visible::after {
+  box-shadow: inset 0 0 0 2px #f7f8f8;
+}
+
+.nfr-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.25s ease-out;
+}
+
+.nfr-card:hover img {
+  transform: scale(1.03);
+}
+
+.nfr-card-title {
+  position: absolute;
+  inset: auto 12px 10px;
+  color: #d0d6e0;
+  font: 500 13px/1.3 "Netflix Sans", Inter, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: -0.01em;
+}
+
+.nfr-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 6;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 9999px;
+  background: #141516;
+  box-shadow: inset 0 0 0 1px #34343a;
+  color: #f7f8f8;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(-50%);
+  transition: opacity 0.15s, background 0.15s;
+}
+
+.nfr-arrow svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.nfr-arrow:hover {
+  background: #1c1c1f;
+}
+
+.nfr-arrow-left {
+  left: calc((var(--nfr-gutter) - 32px) / 2);
+}
+
+.nfr-arrow-right {
+  right: calc((var(--nfr-gutter) - 32px) / 2);
+}
+
+.nfr-shelf:hover .nfr-arrow,
+.nfr-arrow:focus-visible {
+  opacity: 1;
+}
+
+.nfr-shelf.nfr-at-start .nfr-arrow-left,
+.nfr-shelf.nfr-at-end .nfr-arrow-right {
+  display: none;
+}

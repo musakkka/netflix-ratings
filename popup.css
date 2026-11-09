@@ -1,0 +1,210 @@
+:root {
+  --canvas: #08090a;
+  --surface: #141516;
+  --raised: #1c1c1f;
+  --line: #23252a;
+  --line-strong: #34343a;
+  --text: #f7f8f8;
+  --muted: #8a8f98;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 320px;
+  margin: 0;
+  padding: 14px;
+  background: var(--canvas);
+  color: var(--text);
+  font: 400 13px/1.4 Inter, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: -0.01em;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 2px 12px;
+}
+
+h1 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 590;
+}
+
+.source {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+main {
+  display: grid;
+  gap: 8px;
+  transition: opacity 0.15s;
+}
+
+body.off main {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.group {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.field,
+.row {
+  display: block;
+  padding: 11px 12px;
+}
+
+.field + .field,
+.row + .row {
+  border-top: 1px solid var(--line);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 44px;
+}
+
+.field-head {
+  display: flex;
+  justify-content: space-between;
+}
+
+output {
+  font-weight: 510;
+  font-variant-numeric: tabular-nums;
+}
+
+output.is-off {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+input[type="range"] {
+  --fill: 0%;
+  display: block;
+  width: 100%;
+  height: 16px;
+  margin: 8px 0 0;
+  background: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 3px;
+  border-radius: 9999px;
+  background: linear-gradient(to right, var(--text) var(--fill), var(--line-strong) var(--fill));
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  width: 14px;
+  height: 14px;
+  margin-top: -5.5px;
+  border-radius: 9999px;
+  background: var(--text);
+  box-shadow: 0 0 0 3px var(--surface);
+  appearance: none;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  flex: none;
+  width: 30px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.switch input,
+.segmented input {
+  position: absolute;
+  opacity: 0;
+}
+
+.switch span {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: var(--line-strong);
+  transition: background 0.15s;
+}
+
+.switch span::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 9999px;
+  background: var(--text);
+  transition: transform 0.15s, background 0.15s;
+}
+
+.switch input:checked + span {
+  background: var(--text);
+}
+
+.switch input:checked + span::after {
+  background: var(--canvas);
+  transform: translateX(12px);
+}
+
+.segmented {
+  display: inline-flex;
+  flex: none;
+  padding: 2px;
+  border-radius: 9999px;
+  background: var(--canvas);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+
+.segmented label {
+  position: relative;
+  cursor: pointer;
+}
+
+.segmented span {
+  display: block;
+  padding: 3px 11px;
+  border-radius: 9999px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.segmented input:checked + span {
+  background: var(--raised);
+  box-shadow: inset 0 0 0 1px var(--line-strong);
+  color: var(--text);
+}
+
+.switch input:focus-visible + span,
+.segmented input:focus-visible + span,
+input[type="range"]:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+footer {
+  padding: 10px 2px 0;
+  color: var(--muted);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
